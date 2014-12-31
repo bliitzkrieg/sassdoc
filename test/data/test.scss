@@ -115,6 +115,12 @@ $variable-specific-test: ();
  */
 %placeholder-specific-test {}
 
+/**
+ * This is a test placeholder aiming at testing:
+ * - `@name`
+ * @name placeholder-[blue,green,red]
+ */
+%placeholder-#{$color} {}
 
 /**
  * This is a test aiming at testing:
