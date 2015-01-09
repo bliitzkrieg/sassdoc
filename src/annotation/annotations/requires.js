@@ -22,7 +22,7 @@ var searchForMatches = function(code, regex, isAnnotatedByHand){
       matches.push(match[1]);
     }
   }
-  return uniq(matches);
+  return matches;
 };
 
 
@@ -138,8 +138,8 @@ module.exports = {
         all = all.concat(item.requires);
       }
 
-      if (all.length > 0){
-        return all;
+      if (all.length > 0) {
+        return uniq(all, 'name');
       }
     }
   },
