@@ -64,6 +64,10 @@ export default function sassdoc(...args) {
   let hasSrc = src;
 
   env = ensureEnvironment(env || {});
+
+  env.logger.debug('version:', () => require('../package.json').version);
+  env.logger.debug('cwd:', () => process.cwd());
+
   src = src || process.cwd();
   env.dest = env.dest || 'sassdoc';
 

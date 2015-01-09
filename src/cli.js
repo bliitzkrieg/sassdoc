@@ -1,6 +1,6 @@
 let doc = `
 Usage:
-  sassdoc <src> [options]
+  sassdoc <src>  [options]
   sassdoc [options]
 
 Arguments:
@@ -9,12 +9,14 @@ Arguments:
 Options:
   -h, --help            Bring help.
   --version             Show version.
-  -v, --verbose         Enable verbose mode.
+  -v, --verbose         Enable verbose mode. This option can be given
+                        multiple times.
   -d, --dest=<dir>      Documentation folder [default: sassdoc].
   -c, --config=<path>   Path to JSON/YAML configuration file.
   -t, --theme=<name>    Theme to use.
   --no-update-notifier  Disable update notifier check.
   --strict              Turn warnings into errors.
+  --debug               Run in debug mode.
 `;
 
 let docopt = require('docopt').docopt;
@@ -27,8 +29,10 @@ let errors = require('./errors');
 
 export default function cli(argv = process.argv.slice(2)) {
   let options = docopt(doc, { version: pkg.version, argv: argv });
-  let logger = new Logger(options['--verbose']);
+  let logger = new Logger(options['--verbose'], options['--debug']);
   let env = new Environment(logger, options['--strict']);
+
+  logger.debug('argv:', () => JSON.stringify(process.argv.slice(0, 2).concat(argv)));
 
   env.on('error', error => {
     if (error instanceof errors.Warning) {

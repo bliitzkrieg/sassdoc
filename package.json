@@ -102,7 +102,7 @@
     "jshint": "^2.5.10",
     "mocha": "^2.0.1",
     "traceur": ">= 0.0.79 < 1",
-    "traceur-runner": "pascalduez/traceur-runner#pr__compile_options"
+    "traceur-runner": "git+https://github.com/pascalduez/traceur-runner#pr__compile_options"
   },
   "engines": {
     "npm": ">=2.0"
